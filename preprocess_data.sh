@@ -10,11 +10,11 @@ RANDOM_SEED=12345
 
 pushd cleanup_scripts
 
-echo "Generating TFRecords for training set\n"
+echo "Generating TFRecords for training set"
 
 for num in {001..500}
 do
-    echo "Preprocessing part-00${num}\n"
+    echo -e "Preprocessing part-00${num}"
 
     python create_pretraining_data.py \
     --input_file=${DATA_DIR}/part-00${num}-of-00500 \
@@ -28,7 +28,7 @@ do
     --dupe_factor=10
 done
 
-echo "Generating TFRecords for eval set\n"
+echo "Generating TFRecords for eval set"
 
 python create_pretraining_data.py \
   --input_file=${DATA_DIR}/eval.txt \
@@ -46,6 +46,8 @@ python pick_eval_samples.py \
   --output_tfrecord=${OUTPUT_DIR} \
   --num_examples_to_pick=10000
 
-
 popd
-echo "All done!\n"
+
+echo "All done!"
+exit 0
+
