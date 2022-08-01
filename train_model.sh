@@ -11,7 +11,7 @@ TF_XLA_FLAGS='--tf_xla_auto_jit=2'
 
 python run_pretraining.py \
   --bert_config_file=${WIKI_DIR}/bert_config.json \
-  --output_dir=/tmp/output/ \
+  --output_dir=${OUTPUT_DIR} \
   --input_file="${DATA_DIR}/part*" \
   --nodo_eval \
   --do_train \
