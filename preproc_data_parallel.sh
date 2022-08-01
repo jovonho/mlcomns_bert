@@ -3,6 +3,8 @@
 # To be run in the docker container
 # Needs /raw-data, /wiki and /data mounted, with >365 GiB available in /data
 
+# This script will spawn 10 batches of 50 processes to create Tfrecords from the raw data
+
 DATA_DIR="/raw-data"
 WIKI_DIR="/wiki"
 OUTPUT_DIR="/data"
@@ -12,12 +14,12 @@ pushd cleanup_scripts
 
 echo -e "Generating TFRecords for training set"
 
-for batch in {0..19}
+for batch in {0..9}
 do
-  echo -e "Batch $batch of 25"
-  for n in {0..24}
+  echo -e "Batch $batch of 10"
+  for n in {0..49}
   do
-    part_num=$(( 25 * $batch + $n ))
+    part_num=$(( 50 * $batch + $n ))
     part_num=$( printf "%05d" $part_num )
     echo -en "\tPreprocessing part-$part_num\n"
 
