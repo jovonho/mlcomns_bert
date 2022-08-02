@@ -64,6 +64,5 @@ python pick_eval_samples.py \
   --output_tfrecord=${OUTPUT_DIR}/eval_10k \
   --num_examples_to_pick=10000
 
-
 popd
 echo -e "All done!"

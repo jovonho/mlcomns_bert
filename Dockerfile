@@ -3,5 +3,10 @@ FROM tensorflow/tensorflow:1.15.2-gpu
 ADD . /workspace/bert
 WORKDIR /workspace/bert
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+RUN apt-get install -y vim
+
 RUN pip install --upgrade pip
 RUN pip install --disable-pip-version-check -r requirements.txt
