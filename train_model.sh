@@ -17,9 +17,10 @@ echo "STARTING TIMING RUN AT $start_fmt"
 
 # CLEAR YOUR CACHE HERE
 # Import logging library
-python -c "from mlperf_logging.mllog import constants
-  from runtime.logging import mllog_event
-  mllog_event(key=constants.CACHE_CLEAR, value=True)"
+python -c "
+from mlperf_logging.mllog import constants
+from runtime.logging import mllog_event
+mllog_event(key=constants.CACHE_CLEAR, value=True)"
 
 python run_pretraining.py \
   --bert_config_file=${WIKI_DIR}/bert_config.json \

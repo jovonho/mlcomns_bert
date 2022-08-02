@@ -12,7 +12,7 @@ import optimization
 import mlp_logging as mllog
 from mlperf_logging.mllog import constants as mllog_constants
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 # from tensorflow.contrib import cluster_resolver as contrib_cluster_resolver
 # from tensorflow.contrib import data as contrib_data
 # from tensorflow.contrib import tpu as contrib_tpu
@@ -648,3 +648,4 @@ if __name__ == "__main__":
   flags.mark_flag_as_required("bert_config_file")
   flags.mark_flag_as_required("output_dir")
   absl.app.run(main)
+  
