@@ -61,7 +61,7 @@ python create_pretraining_data.py \
 
 python pick_eval_samples.py \
   --input_tfrecord=${DATA_DIR}/eval_intermediate \
-  --output_tfrecord=${OUTPUT_DIR} \
+  --output_tfrecord=${OUTPUT_DIR}/eval_10k \
   --num_examples_to_pick=10000
 
 

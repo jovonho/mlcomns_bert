@@ -6,8 +6,20 @@
 DATA_DIR="/data"
 WIKI_DIR="/wiki"
 OUTPUT_DIR="/output"
+NUM_GPUS=8
 
 TF_XLA_FLAGS='--tf_xla_auto_jit=2'
+
+# start timing
+start=$(date +%s)
+start_fmt=$(date +%Y-%m-%d\ %r)
+echo "STARTING TIMING RUN AT $start_fmt"
+
+# CLEAR YOUR CACHE HERE
+# Import logging library
+python -c "from mlperf_logging.mllog import constants
+  from runtime.logging import mllog_event
+  mllog_event(key=constants.CACHE_CLEAR, value=True)"
 
 python run_pretraining.py \
   --bert_config_file=${WIKI_DIR}/bert_config.json \
@@ -26,6 +38,16 @@ python run_pretraining.py \
   --optimizer=lamb \
   --save_checkpoints_steps=6250 \
   --start_warmup_step=0 \
-  --num_gpus=8 \
+  --num_gpus=$NUM_GPUS \
   --train_batch_size=24
   
+  # end timing
+end=$(date +%s)
+end_fmt=$(date +%Y-%m-%d\ %r)
+echo "ENDING TIMING RUN AT $end_fmt"
+
+# report result
+result=$(( $end - $start ))
+result_name="BERT"
+
+echo "RESULT,$result_name,$SEED,$result,$USER,$start_fmt"
