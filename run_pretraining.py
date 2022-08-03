@@ -478,7 +478,7 @@ def main(_):
   if not FLAGS.do_train and not FLAGS.do_eval:
     raise ValueError("At least one of `do_train` or `do_eval` must be True.")
 
-  mlperf_logger = mllog.get_mlperf_logger('', 'bert.log')
+  mlperf_logger = mllog.get_mlperf_logger(FLAGS.output_dir, 'bert.log')
   if FLAGS.do_train:
     mllog.mllog_start(key=mllog_constants.INIT_START)
 
@@ -648,4 +648,3 @@ if __name__ == "__main__":
   flags.mark_flag_as_required("bert_config_file")
   flags.mark_flag_as_required("output_dir")
   absl.app.run(main)
-  
